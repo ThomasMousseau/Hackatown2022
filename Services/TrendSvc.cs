@@ -3,7 +3,12 @@
 // GOOGLE_TRENDS-SVC.PY
 
 using System.Collections;
+using IronPython.Modules;
 using IronPython.Hosting;
+using System.Diagnostics;
+using Microsoft.Scripting.Hosting;
+using Newtonsoft.Json;
+using Models;
 
 namespace Services 
 {
@@ -11,21 +16,16 @@ namespace Services
     {
         public List<string> GetNameTopics()
         {
-            List<string> listTopic = new List<string>();   
-            //instance of python engine
-            var engine = Python.CreateEngine();
-            //reading code from file
-            var source = engine.CreateScriptSourceFromFile("./Services/PytrendsTest.py");
-            var scope = engine.CreateScope();
-            //executing script in scope
-            //engine.ExecuteFile(@"PytrendsTest.py");
-            source.Execute(scope);
-            var classTrends = scope.GetVariable("Trends");
-            //initializing class
-            var TrendsInstance = engine.Operations.CreateInstance(classTrends);
-            listTopic = TrendsInstance.GetTrends();
+            DateTime date = DateTime.Now;
+            string[] listTopic = new string[]{};
 
-            return listTopic;
+            using (StreamReader file = File.OpenText(@$"./DailyTopics/{date.ToString("yyyy-MM-dd")}.json"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                listTopic = serializer.Deserialize(file, typeof(string[])) as string[];
+            }
+
+            return new List<string>(listTopic);
         }
     }
 }
