@@ -5,16 +5,18 @@ import ArticleCpt from './article';
 import styles from '../styles/Topics.module.css';
 
 const TopicCpt = (props: Topic) => {
+    console.log("in [TopicCpt]");
+
     return (
         <div>
             <h2>{props.importance}. {props.title}</h2>
-            <div>
+            {/* <div>
                 {
                     props.artciles.map((a: Article) => {
                         return <ArticleCpt article={a}/>
                     })
                 }
-            </div>
+            </div> */}
         </div>
     );
 };

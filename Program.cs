@@ -6,6 +6,11 @@ builder.Services.AddMemoryCache();
 
 // Add services to the container.
 
+builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+    {
+        builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+    })
+);
 builder.Services.AddControllersWithViews();
 builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddScoped<INewsSvc, Services.NewsSvc>();
@@ -21,6 +26,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseCors("corsapp");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();

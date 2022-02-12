@@ -1,8 +1,14 @@
 import { Topic } from "../models/topic.model";
-import axios, { AxiosResponse } from "axios";
+import https from "https";
 
 export class TopicService {
-  getTopics(): Promise<AxiosResponse<Topic[]>> {
-    return axios.get("/api/topics");
+  apiUrl = "https://localhost:7219"
+  agent = new https.Agent({
+    rejectUnauthorized: false
+  })
+
+  getTopics(): Promise<Response> {
+    console.log("in GetTopics()");
+    return fetch(`${this.apiUrl}/api/main/topics`, { agent: this.agent } as RequestInit);
   }
 }
