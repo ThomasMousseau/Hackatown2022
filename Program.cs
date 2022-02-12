@@ -1,10 +1,15 @@
+using Logic;
+using Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddMemoryCache();
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddControllers().AddNewtonsoftJson();
-builder.Services.AddSingleton(new NewsSvc());
+builder.Services.AddScoped<INewsSvc, Services.NewsSvc>();
+builder.Services.AddScoped<ILogicLayer, LogicLayer>();
 
 var app = builder.Build();
 
