@@ -15,10 +15,10 @@ namespace Services
         public NewsSvc()
         {
             // init with your API key
-            _newsApiClient = new NewsApiClient("732b4d63a382437eb0df2bd765cc2712"); 
+            _newsApiClient = new NewsApiClient("19aa71e46f2c48dc8feed85a11ae327b"); 
         }
 
-        public IEnumerable<Models.Article> getTopNews(string topic)
+        public IEnumerable<Models.Article> GetTopNews(string topic)
         {
             IEnumerable<Models.Article> articles = Enumerable.Empty<Models.Article>();
 

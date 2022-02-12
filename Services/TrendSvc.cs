@@ -11,19 +11,20 @@ namespace Services
     {
         public List<string> GetNameTopics()
         {
-            List<string> listTopic = new List<string>();   
+            List<string> listTopic = new List<string>() {"Apple", "Joe Biden", "Justin Trudeau"};   
             //instance of python engine
-            var engine = Python.CreateEngine();
-            //reading code from file
-            var source = engine.CreateScriptSourceFromFile("./Services/PytrendsTest.py");
-            var scope = engine.CreateScope();
-            //executing script in scope
-            //engine.ExecuteFile(@"PytrendsTest.py");
-            source.Execute(scope);
-            var classTrends = scope.GetVariable("Trends");
-            //initializing class
-            var TrendsInstance = engine.Operations.CreateInstance(classTrends);
-            listTopic = TrendsInstance.GetTrends();
+            // var engine = Python.CreateEngine();
+            // engine.ImportModule("pytrends");
+            // //reading code from file
+            // var source = engine.CreateScriptSourceFromFile("./Services/PytrendsTest.py");
+            // var scope = engine.CreateScope();
+            // //executing script in scope
+            // //engine.ExecuteFile(@"PytrendsTest.py");
+            // source.Execute(scope);
+            // var classTrends = scope.GetVariable("Trends");
+            // //initializing class
+            // var TrendsInstance = engine.Operations.CreateInstance(classTrends);
+            // listTopic = TrendsInstance.GetTrends();
 
             return listTopic;
         }
