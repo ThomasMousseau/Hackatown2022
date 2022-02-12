@@ -2,6 +2,7 @@
 // VA DEVENIR
 // GOOGLE_TRENDS-SVC.PY
 
+using System.Collections;
 using IronPython.Hosting;
 
 namespace Services 
@@ -18,10 +19,11 @@ namespace Services
             var scope = engine.CreateScope();
             //executing script in scope
             source.Execute(scope);
-            var TrendsAPI = scope.GetVariable("Trends");
+            var classTrends = scope.GetVariable("Trends");
             //initializing class
-            var TrendsCalc = engine.Operations.CreateInstance(TrendsAPI);
-            listTopic = TrendsCalc
+            var TrendsInstance = engine.Operations.CreateInstance(classTrends);
+            listTopic = TrendsInstance.GetTrends();
+
             return listTopic;
         }
     }
