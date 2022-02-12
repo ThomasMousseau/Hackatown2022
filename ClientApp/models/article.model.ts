@@ -5,6 +5,6 @@ export interface Article {
     authorTwitter: string;
     title: string;
     thumbnail: string;
-    l2r: number;
+    l2r: number; //faudrait le changer pour qu'il soit un float
     link: string;
 }

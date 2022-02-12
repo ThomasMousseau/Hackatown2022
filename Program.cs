@@ -3,6 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddSingleton(new NewsSvc());
 
 var app = builder.Build();
