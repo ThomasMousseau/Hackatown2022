@@ -1,11 +1,11 @@
 using Models;
 using Interfaces;
+using Services;
 
 namespace Logic
 {
     public class LogicLayer: ILogicLayer
     {
-
         readonly List<Topic> TOPICS = new List<Topic>(){
             new Topic() {
                 title = "Apple",
@@ -26,14 +26,20 @@ namespace Logic
         };
 
         private readonly INewsSvc _newsSvc;
-        public LogicLayer(INewsSvc newsSvc)
+        private readonly ITrendSvc _trendSvc;
+        public LogicLayer(INewsSvc newsSvc, ITrendSvc trendSvc)
         {
             _newsSvc = newsSvc;
+            _trendSvc = trendSvc;
         }
 
         public List<Topic> GetAllNews()
         {
-            var topics = TOPICS; //TODO: fetch from some api
+            //var topics = TOPICS; //en vrai on veut que TOPICS soit une liste de string venant de GoogleTrends.Py API
+            var topics = _trendSvc.GetNameTopics().Select(x => new Topic(){
+                title = x,
+                importance = 1
+            }).Take(10).ToList();
 
             foreach (Topic t in topics)
             {
