@@ -43,8 +43,7 @@ const Home: NextPage = () => {
         <div className={styles.topics}>
           {
             topics.map((t: Topic) => {
-              console.log(t);
-              return (<TopicCpt key={t.title} title={t.title} importance={t.importance} artciles={t.artciles}  />);
+              return (<TopicCpt key={t.title} title={t.title} importance={t.importance} articles={t.articles}  />);
             })
           }
         </div>

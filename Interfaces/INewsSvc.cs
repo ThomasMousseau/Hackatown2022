@@ -2,5 +2,5 @@ using Models;
 
 public interface INewsSvc
 {
-    IEnumerable<Article> getTopNews(string topic);
+    IEnumerable<Article> GetTopNews(string topic);
 }

@@ -18,7 +18,7 @@ namespace Services
             _newsApiClient = new NewsApiClient("19aa71e46f2c48dc8feed85a11ae327b"); 
         }
 
-        public IEnumerable<Models.Article> getTopNews(string topic)
+        public IEnumerable<Models.Article> GetTopNews(string topic)
         {
             IEnumerable<Models.Article> articles = Enumerable.Empty<Models.Article>();
 

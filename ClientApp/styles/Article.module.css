@@ -1,0 +1,51 @@
+
+
+.article {
+    --width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: var(--width);
+    height: 405px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-items: space-between;
+}
+
+.article > .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px 5px 10px;
+}
+
+.article > .date {
+
+}
+
+.article > .publication {
+
+}
+
+.article > .thumbnail {
+    width: 249px;
+    height: auto;
+    /* width: auto; */
+    object-fit: cover;
+}
+
+.article > .toast {
+    background-color: white;
+    padding: 0px 10px 15px 10px;
+
+}
+
+.article > .toast > .title {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.article > .toast > .author {
+    font-size: 14px;
+}

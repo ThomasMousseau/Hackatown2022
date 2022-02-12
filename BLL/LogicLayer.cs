@@ -43,7 +43,7 @@ namespace Logic
 
             foreach (Topic t in topics)
             {
-                t.articles = _newsSvc.getTopNews(t.title).ToArray();
+                t.articles = _newsSvc.GetTopNews(t.title).ToArray();
             }
 
             return topics;
