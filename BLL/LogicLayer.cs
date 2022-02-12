@@ -36,9 +36,9 @@ namespace Logic
         public List<Topic> GetAllNews()
         {
             //var topics = TOPICS; //en vrai on veut que TOPICS soit une liste de string venant de GoogleTrends.Py API
-            var topics = _trendSvc.GetNameTopics().Select(x => new Topic(){
+            var topics = _trendSvc.GetNameTopics().Select((x, index) => new Topic(){
                 title = x,
-                importance = 1
+                importance = index + 1
             }).Take(10).ToList();
 
             foreach (Topic t in topics)
