@@ -1,12 +1,11 @@
-using Article;
-
-public class Topic
-{
-    public int importance;
-    public string title;
-    public Articles[] articles;
+namespace Models {
+    public class Topic
+    {
+        public int importance;
+        public string title;
+        public Article[] articles;
+    }
 }
-
 
 /*import { Article } from "./article.model";
 export interface Topic {

@@ -1,11 +1,13 @@
+using System;
 
-public class Article
-{
-    public datetime publicationDate;
-    public string publication, authorName, authorTwitter, title, thumbnail, link; 
-    public int l2r;
+namespace Models {
+    public class Article
+    {
+        public DateTime publicationDate;
+        public string publication, authorName, authorTwitter, title, thumbnail, link; 
+        public int l2r;
+    }
 }
-
 /*export interface Article {
     publicationDate: Date;
     publication: string;
