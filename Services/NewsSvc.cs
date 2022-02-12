@@ -15,7 +15,7 @@ namespace Services
         public NewsSvc()
         {
             // init with your API key
-            _newsApiClient = new NewsApiClient("19aa71e46f2c48dc8feed85a11ae327b"); 
+            _newsApiClient = new NewsApiClient("82d85eeaef214565b981617b43761095"); 
         }
 
         public IEnumerable<Models.Article> GetTopNews(string topic)
