@@ -15,9 +15,10 @@ namespace Services
             //instance of python engine
             var engine = Python.CreateEngine();
             //reading code from file
-            var source = engine.CreateScriptSourceFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "PythonSampleIronPython.py"));
+            var source = engine.CreateScriptSourceFromFile("./Services/PytrendsTest.py");
             var scope = engine.CreateScope();
             //executing script in scope
+            //engine.ExecuteFile(@"PytrendsTest.py");
             source.Execute(scope);
             var classTrends = scope.GetVariable("Trends");
             //initializing class
