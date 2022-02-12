@@ -10,6 +10,7 @@ namespace Services {
     public class NewsSvc : INewsSvc
     {
         private readonly NewsApiClient _newsApiClient;
+        DateTime today = DateTime.Now;
         public NewsSvc()
         {
             // init with your API key
@@ -25,8 +26,8 @@ namespace Services {
                 Q = topic,
                 SortBy = SortBys.Popularity,
                 Language = Languages.EN,
-                From = new DateTime(2022, 2, 11)
-            });
+                From = today
+        });
             if (articlesResponse.Status == Statuses.Ok)
             {
                 // total results found
