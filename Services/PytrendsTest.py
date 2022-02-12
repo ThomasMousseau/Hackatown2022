@@ -1,4 +1,4 @@
-from pytrends.request import TrendReq
+from pytrends import TrendReq
 
 pytrends = TrendReq(hl='en-US', tz=360)
 
