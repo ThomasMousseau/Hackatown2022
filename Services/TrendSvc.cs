@@ -2,7 +2,7 @@
 // VA DEVENIR
 // GOOGLE_TRENDS-SVC.PY
 
-using System.Collections;
+using IronPython.Hosting;
 
 namespace Services 
 {
@@ -18,13 +18,10 @@ namespace Services
             var scope = engine.CreateScope();
             //executing script in scope
             source.Execute(scope);
-            var classCalculator = scope.GetVariable("calculator");
+            var TrendsAPI = scope.GetVariable("Trends");
             //initializing class
-            var calculatorInstance = engine.Operations.CreateInstance(classCalculator);
-            Console.WriteLine("From Iron Python");
-            Console.WriteLine("5 + 10 = {0}", calculatorInstance.add(5, 10));
-            Console.WriteLine("5++ = {0}", calculatorInstance.increment(5));
-
+            var TrendsCalc = engine.Operations.CreateInstance(TrendsAPI);
+            listTopic = TrendsCalc
             return listTopic;
         }
     }

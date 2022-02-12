@@ -1,18 +1,21 @@
-from xml.dom.minidom import TypeInfo
 from pytrends.request import TrendReq
 
 pytrends = TrendReq(hl='en-US', tz=360)
 
-def GetTrends():
-    trend1 = pytrends.trending_searches(pn='united_states')
-    trendsArray = ValuesToArray(trend1.values)
-    return trendsArray
+class Trends:
 
-def ValuesToArray(value):
-    trendList = []
-    for i in value:
-        trendList.append(i[0])
-    return trendList
+    def ValuesToArray(value):
+            trendList = []
+            for i in value:
+                trendList.append(i[0])
+            return trendList
+
+    def GetTrends():
+        trend1 = pytrends.trending_searches(pn='united_states')
+        trendsArray = Trends.ValuesToArray(trend1.values)
+        return trendsArray
+
+    
     
 
 
