@@ -1,7 +1,7 @@
 import React from 'react';
 import { Article } from '../models/article.model';
 
-const ArticleCpt = (props: Article) => {
+const ArticleCpt = (props: any) => {
     return (
         <div>
         </div>
