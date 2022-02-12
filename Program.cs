@@ -3,6 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton(new NewsSvc());
 
 var app = builder.Build();
 
@@ -18,9 +19,10 @@ app.UseStaticFiles();
 app.UseRouting();
 
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
+// app.MapControllerRoute(
+//     name: "default",
+//     pattern: "{controller}");
+app.UseEndpoints(ep => { ep.MapControllers(); });
 
 app.MapFallbackToFile("index.html");
 
