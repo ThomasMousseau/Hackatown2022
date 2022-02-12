@@ -3,7 +3,8 @@ using NewsAPI;
 using NewsAPI.Models;
 using NewsAPI.Constants;
 using System;
-
+//using Models.Article;
+using System.Collections;
 public class NewsSvc
 {
     private readonly NewsApiClient _newsApiClient;
@@ -14,37 +15,38 @@ public class NewsSvc
     }
     
 
-    public Object getTopNews()
+    public IEnumerable<Models.Article> getTopNews()
     {
+        IEnumerable<Models.Article> articles = Enumerable.Empty<Models.Article>();
+
         var articlesResponse = _newsApiClient.GetEverything(new EverythingRequest
         {
             Q = "Apple",
             SortBy = SortBys.Popularity,
             Language = Languages.EN,
-            From = new DateTime(2018, 1, 25)
+            From = new DateTime(2022, 2, 11)
         });
-        if (articlesResponse.Status != Statuses.Ok)
+        if (articlesResponse.Status == Statuses.Ok)
         {
             // total results found
             Console.WriteLine(articlesResponse.TotalResults);
             // here's the first 20
-            foreach (var article in articlesResponse.Articles)
-            {
-                // title
-                Console.WriteLine(article.Title);
-                // author
-                Console.WriteLine(article.Author);
-                // description
-                Console.WriteLine(article.Description);
-                // url
-                Console.WriteLine(article.Url);
-                // published at
-                Console.WriteLine(article.PublishedAt);
-            }
+            articles =  articlesResponse.Articles.Select(x => new Models.Article() {
+                publication = x.Source.Name,
+                authorName = x.Author,
+                title = x.Title,
+                thumbnail = x.UrlToImage,
+                link = x.Url,
+                publicationDate = x.PublishedAt
+            });
         }
-        return new {
-            test = "test"
-        };
+
+        return articles;
+    }
+
+    public float l2rCalc() //voir la partie ClientApp pour changer number -> float
+    {
+        return 0.0f;
     }
 }
 
