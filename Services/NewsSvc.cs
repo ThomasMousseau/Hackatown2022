@@ -6,7 +6,8 @@ using System;
 //using Models.Articles
 using System.Collections;
 
-namespace Services {
+namespace Services 
+{
     public class NewsSvc : INewsSvc
     {
         private readonly NewsApiClient _newsApiClient;
