@@ -15,7 +15,7 @@ namespace Services
         public NewsSvc()
         {
             // init with your API key
-            _newsApiClient = new NewsApiClient("82d85eeaef214565b981617b43761095"); 
+            _newsApiClient = new NewsApiClient("59ee017935204e81ad6d1fd0fd7755c2"); 
         }
 
         public IEnumerable<Models.Article> GetTopNews(string topic)
@@ -28,7 +28,7 @@ namespace Services
                 SortBy = SortBys.Popularity,
                 Language = Languages.EN,
                 From = today
-        });
+            });
             if (articlesResponse.Status == Statuses.Ok)
             {
                 // total results found
@@ -42,6 +42,9 @@ namespace Services
                     link = x.Url,
                     publicationDate = x.PublishedAt
                 });
+            }
+            else{
+                throw new Exception("L'esti de API key TABARNAK");
             }
 
             return articles;
