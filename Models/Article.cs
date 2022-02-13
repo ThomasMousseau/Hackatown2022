@@ -4,7 +4,7 @@ namespace Models {
     public class Article
     {
         public DateTime? publicationDate;
-        public string publication, authorName, authorTwitter, title, thumbnail, link; 
+        public string publication, authorName, authorTwitter, title, thumbnail, link, summary, content; 
         public int l2r;
     }
 }

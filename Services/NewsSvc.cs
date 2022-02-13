@@ -40,7 +40,8 @@ namespace Services
                     title = x.Title,
                     thumbnail = x.UrlToImage,
                     link = x.Url,
-                    publicationDate = x.PublishedAt
+                    publicationDate = x.PublishedAt,
+                    content = x.Content
                 });
             }
             else{

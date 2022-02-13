@@ -15,6 +15,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddScoped<INewsSvc, Services.NewsSvc>();
 builder.Services.AddScoped<ITrendSvc, Services.TrendSvc>();
+builder.Services.AddScoped<ISummarizationSvc, Services.SummarizationSvc>();
 builder.Services.AddScoped<ILogicLayer, LogicLayer>();
 
 var app = builder.Build();

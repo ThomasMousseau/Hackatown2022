@@ -6,31 +6,15 @@ namespace Logic
 {
     public class LogicLayer: ILogicLayer
     {
-        readonly List<Topic> TOPICS = new List<Topic>(){
-            new Topic() {
-                title = "Apple",
-                importance = 1,
-                articles = new Article[] {}
-            },
-            new Topic() {
-                title = "Joe Biden",
-                importance = 2,
-                articles = new Article[] {}
-
-            },
-            new Topic() {
-                title = "Joe Rogan",
-                importance = 3,
-                articles = new Article[] {}
-            }
-        };
 
         private readonly INewsSvc _newsSvc;
         private readonly ITrendSvc _trendSvc;
-        public LogicLayer(INewsSvc newsSvc, ITrendSvc trendSvc)
+        private readonly ISummarizationSvc _summarizationSvc;
+        public LogicLayer(INewsSvc newsSvc, ITrendSvc trendSvc, ISummarizationSvc summarizationSvc)
         {
             _newsSvc = newsSvc;
             _trendSvc = trendSvc;
+            _summarizationSvc = summarizationSvc;
         }
 
         public List<Topic> GetAllNews()
@@ -60,5 +44,6 @@ namespace Logic
 
             return res;
         }
+
     }
 }
