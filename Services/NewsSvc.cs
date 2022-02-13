@@ -15,7 +15,7 @@ namespace Services
         public NewsSvc()
         {
             // init with your API key
-            _newsApiClient = new NewsApiClient("09b9ea784f2f48aea467361746098963"); 
+            _newsApiClient = new NewsApiClient("ba76db09704d41da960877356e3d8c4b"); 
         }
 
         public IEnumerable<Models.Article> GetTopNews(string topic)
@@ -33,8 +33,6 @@ namespace Services
 
             if (articlesResponse.Status == Statuses.Ok)
             {
-                // total results found
-                Console.WriteLine(articlesResponse.TotalResults);
                 // here's the first 20
                 articles =  articlesResponse.Articles.Select(x => new Models.Article() {
                     publication = x.Source.Name,

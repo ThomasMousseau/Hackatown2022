@@ -3,6 +3,8 @@
 // GOOGLE_TRENDS-SVC.PY
 
 using Newtonsoft.Json;
+using Tweetinvi;
+using Tweetinvi.Parameters.TrendsClient;
 
 namespace Services
 {

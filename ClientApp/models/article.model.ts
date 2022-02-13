@@ -7,4 +7,6 @@ export interface Article {
     thumbnail: string;
     l2r: number; //faudrait le changer pour qu'il soit un float
     link: string;
+    content: string;
+    summary: string;
 }

@@ -14,52 +14,47 @@ namespace Services {
             endpoint = new Uri("https://hackatown2022.cognitiveservices.azure.com/");
             _client = new TextAnalyticsClient(endpoint, credentials);
         }
-        // public async Task<string> GetSummary(string content)
-        public string GetSummary(string content)
+        public async Task<string[]> GetSummary(string[] content)
         {
-            // var batchInput = new List<string>
-            // {
-            //     content
-            // };
+            var batchInput = new List<string>(content);
+            var res = new string[]{};
         
-            // TextAnalyticsActions actions = new TextAnalyticsActions()
-            // {
-            //     ExtractSummaryActions = new List<ExtractSummaryAction>() { new ExtractSummaryAction() }
-            // };
+            TextAnalyticsActions actions = new TextAnalyticsActions()
+            {
+                ExtractSummaryActions = new List<ExtractSummaryAction>() { new ExtractSummaryAction() }
+            };
 
-            // AnalyzeActionsOperation operation = await _client.StartAnalyzeActionsAsync(batchInput, actions);
-            // await operation.WaitForCompletionAsync();
+            AnalyzeActionsOperation operation = await _client.StartAnalyzeActionsAsync(batchInput, actions);
+            await operation.WaitForCompletionAsync();
 
-            // await foreach (AnalyzeActionsResult documentsInPage in operation.Value)
-            // {
-            //     IReadOnlyCollection<ExtractSummaryActionResult> summaryResults = documentsInPage.ExtractSummaryResults;
+            await foreach (AnalyzeActionsResult documentsInPage in operation.Value)
+            {
+                IReadOnlyCollection<ExtractSummaryActionResult> summaryResults = documentsInPage.ExtractSummaryResults;
         
-            //     foreach (ExtractSummaryActionResult summaryActionResults in summaryResults)
-            //     {
-            //         if (summaryActionResults.HasError)
-            //         {
-            //             continue;
-            //         }
+                foreach (ExtractSummaryActionResult summaryActionResults in summaryResults)
+                {
+                    if (summaryActionResults.HasError)
+                    {
+                        continue;
+                    }
         
-            //         foreach (ExtractSummaryResult documentResults in summaryActionResults.DocumentsResults)
-            //         {
-            //             if (documentResults.HasError)
-            //             {
-            //                 continue;
-            //             }
+                    foreach (ExtractSummaryResult documentResults in summaryActionResults.DocumentsResults)
+                    {
+                        if (documentResults.HasError)
+                        {
+                            continue;
+                        }
         
-            //             Console.WriteLine($"  Extracted the following {documentResults.Sentences.Count} sentence(s):");
-            //             Console.WriteLine();
-        
-            //             foreach (SummarySentence sentence in documentResults.Sentences)
-            //             {
-            //                 Console.WriteLine($"  Sentence: {sentence.Text}");
-            //                 Console.WriteLine();
-            //             }
-            //         }
-            //     }
-            // }
-            return "";
+                        Console.WriteLine($"  Extracted the following {documentResults.Sentences.Count} sentence(s):");
+                        Console.WriteLine();
+                        
+                        var sum = "";
+                        documentResults.Sentences.Select(sentence => sentence.Text).ToList().ForEach(sentence => sum += sentence + "\n");
+                        res.Append(sum);
+                    }
+                }
+            }
+            return res;
         }
     }
 }

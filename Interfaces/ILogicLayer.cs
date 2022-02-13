@@ -4,6 +4,6 @@ using Models;
 namespace Interfaces {
     public interface ILogicLayer
     {
-        List<Topic> GetAllNews();
+        Task<List<Topic>> GetAllNews();
     }
 }
