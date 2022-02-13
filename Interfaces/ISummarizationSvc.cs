@@ -1,5 +1,7 @@
 namespace Interfaces {
     public interface ISummarizationSvc {
-        string GetSummary(string content);
+        // Task<string> GetSummary(string content);
+        String GetSummary(string content);
+
     }
 }
