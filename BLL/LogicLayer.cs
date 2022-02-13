@@ -9,10 +9,12 @@ namespace Logic
 
         private readonly INewsSvc _newsSvc;
         private readonly ITrendSvc _trendSvc;
-        public LogicLayer(INewsSvc newsSvc, ITrendSvc trendSvc)
+        private readonly ISummarizationSvc _summarizationSvc;
+        public LogicLayer(INewsSvc newsSvc, ITrendSvc trendSvc, ISummarizationSvc summarizationSvc)
         {
             _newsSvc = newsSvc;
             _trendSvc = trendSvc;
+            _summarizationSvc = summarizationSvc;
         }
 
         public List<Topic> GetAllNews()
@@ -32,6 +34,16 @@ namespace Logic
             var res = topics.OrderBy(x => x.articles?.Length)
             .Reverse()
             .Take(10).ToList();
+
+            for(int i = 0; i < res.Count; i++)
+            {
+                res[i].importance = i + 1;
+
+                foreach (Article a in res[i].articles)
+                {
+                    a.summary = _summarizationSvc.GetSummary(a.content);
+                }
+            }
             
             return res;
         }
