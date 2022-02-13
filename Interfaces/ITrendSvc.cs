@@ -3,6 +3,6 @@ using Models;
 public interface ITrendSvc
 {
     List<string> GetNameTopics();
-    //List<string> GetNameTopicsTwitter();
+    Task<Tweetinvi.Models.IGetTrendsAtResult> GetNameTopicsTwitter();
     //List<string> GetNameTopicsPytrends();
 }

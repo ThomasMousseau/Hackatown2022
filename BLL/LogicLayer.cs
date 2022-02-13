@@ -26,12 +26,21 @@ namespace Logic
             })
             .ToList();
 
-            foreach (Topic t in topics)
+            var s = _trendSvc.GetNameTopicsTwitter().Result.Trends;
+            List<Topic> list = s.Select(x => new Topic()
             {
-                t.articles = _newsSvc.GetTopNews(t.title).ToArray();
+                title = x.Name,
+                importance = 1,
+            }).ToList();
+
+            var allTopics = topics.Concat(list).DistinctBy(x => x.title);
+
+            foreach (Topic t in allTopics)
+            {
+                t.articles = _newsSvc.GetTopNews(t.title).Where(x => x.publication != "Yahoo Entertainment" && x.publication != "Hoops Hype").ToArray();
             }
 
-            var res = topics
+            var res = allTopics
             .OrderBy(x => x.articles?.Length)
             .Reverse()
             .Take(10)
