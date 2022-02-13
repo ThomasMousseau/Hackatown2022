@@ -2,17 +2,9 @@
 // VA DEVENIR
 // GOOGLE_TRENDS-SVC.PY
 
-using System.Collections;
-using IronPython.Modules;
-using IronPython.Hosting;
-using System.Diagnostics;
-using Microsoft.Scripting.Hosting;
 using Newtonsoft.Json;
-using Models;
-using Tweetinvi;
-using Tweetinvi.Parameters.TrendsClient;
 
-namespace Services 
+namespace Services
 {
     public class TrendSvc : ITrendSvc
     {
