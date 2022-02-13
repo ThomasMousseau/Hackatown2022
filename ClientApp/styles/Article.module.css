@@ -30,7 +30,7 @@
 
 .article > .thumbnail {
     width: 249px;
-    height: auto;
+    max-height: 203px;
     /* width: auto; */
     object-fit: cover;
 }
